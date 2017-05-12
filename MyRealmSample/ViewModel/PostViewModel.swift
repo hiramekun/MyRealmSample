@@ -18,7 +18,7 @@ class PostViewModel {
 
     // MARK: - Property -
 
-    lazy var posts: Variable<Results<Post>?> = {
+    private (set) lazy var posts: Variable<Results<Post>?> = {
         return Variable(try! Realm().objects(Post.self))
     }()
 }
