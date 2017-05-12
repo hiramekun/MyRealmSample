@@ -9,7 +9,7 @@ import RealmSwift
 class Post: Object {
     dynamic var id = ""
     dynamic var content = ""
-
+    
     override class func primaryKey() -> String? {
         return "id"
     }

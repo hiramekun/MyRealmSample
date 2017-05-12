@@ -9,22 +9,22 @@ import RxSwift
 import RealmSwift
 
 class PostViewModel {
-
+    
     /// Do NOT initialize out of this file
-
+    
     fileprivate init() {
     }
-
-
+    
+    
     // MARK: - Property -
-
+    
     private (set) lazy var posts: Variable<Results<Post>?> = {
         return Variable(try! Realm().objects(Post.self))
     }()
 }
 
 extension PostViewModel {
-
+    
     static var sharedPostViewModel: PostViewModel = {
         return PostViewModel()
     }()
@@ -35,7 +35,7 @@ extension Results {
     public func rx_response() -> Observable<Results<Element>> {
         return Observable.create { observer in
             MainScheduler.ensureExecutingOnScheduler()
-
+            
             let token = self.addNotificationBlock { change in
                 switch change {
                 case .initial:
@@ -48,7 +48,7 @@ extension Results {
                     break
                 }
             }
-
+            
             return Disposables.create() {
                 token.stop()
             }
